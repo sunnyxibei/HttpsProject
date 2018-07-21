@@ -5,6 +5,10 @@
 
 服务器环境使用Tomcat 9，配置了RSA证书，放了一个json文件用来试验。
 
-
+```
+port="8443" //HTTPS默认端口8443
+type="RSA"  //加密方式RSA
+sslProtocol="TLS" //ssl协议版本 TLS
+```
 
 Android端的代码是根据Google Developer一步一步学习的，官方文档非常翔实，多看有益。

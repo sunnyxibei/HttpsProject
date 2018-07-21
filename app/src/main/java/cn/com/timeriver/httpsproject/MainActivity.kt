@@ -34,20 +34,23 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
         doAsync {
             // Load CAs from an InputStream
             // (could be from a resource or ByteArrayInputStream or ...)
+            // 这一步相当于浏览器（客户端）获取服务器加密证书的过程
+            // 不过这里，因为是demo，直接把证书文件（服务器公钥）放在asset目录中
             val cf = CertificateFactory.getInstance("X.509")
-            val certficate = cf.generateCertificate(assets.open("tomcat.cert"))
+            val certificate = cf.generateCertificate(assets.open("tomcat.cert"))
 
             // Create a KeyStore containing our trusted CAs
             val keyStore = KeyStore.getInstance(KeyStore.getDefaultType())
             // Clear keystore
             keyStore.load(null)
-            keyStore.setCertificateEntry("tomcat", certficate)
+            keyStore.setCertificateEntry("tomcat", certificate)
 
             // Create a TrustManager that trusts the CAs in our KeyStore
             val tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
             tmf.init(keyStore)
 
             // Create an SSLContext that uses our TrustManager
+            // 浏览器实现时，接收到服务器公钥时，会生成一个随机密码串，但是这里我们直接传值为null？
             val sslContext = SSLContext.getInstance("TLS")
             sslContext.init(null, tmf.trustManagers, null)
 
