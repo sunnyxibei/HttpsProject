@@ -8,13 +8,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion(27)
+    compileSdkVersion(28)
     defaultConfig {
-        applicationId = "cn.com.timeriver.videoplayer"
+        applicationId = "cn.com.timeriver.httpsproject"
         minSdkVersion(21)
-        targetSdkVersion(27)
-        versionCode = 1
-        versionName = "1.0.0"
+        targetSdkVersion(28)
+        versionCode = 1010
+        versionName = "1.0.1"
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
