@@ -52,11 +52,11 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
 
             // Create an SSLContext that uses our TrustManager
             val sslContext = SSLContext.getInstance("TLS")
-            /******************* 方式一 使用默认的trustManager ********************/
+            /******************* 方式一 法证书锁定，直接用预埋的证书来生成TrustManger ********************/
             // Create a TrustManager that trusts the CAs in our KeyStore
             // val tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
             // tmf.init(keyStore)
-            
+
             // 浏览器实现时，接收到服务器公钥时，会生成一个随机密码串
             // 使用SecureRandom生成随机数，用于后续对称加密的密钥
             // 这里的trustManagers使用的是默认的TrustManager
