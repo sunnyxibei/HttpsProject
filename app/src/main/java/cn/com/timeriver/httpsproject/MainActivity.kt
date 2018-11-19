@@ -1,6 +1,7 @@
 package cn.com.timeriver.httpsproject
 
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import kotlinx.android.synthetic.main.activity_main.*
