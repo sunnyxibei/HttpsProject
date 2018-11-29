@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version ("1.3.0")
+    kotlin("jvm") version ("1.3.10")
 }
 
 buildscript {
@@ -9,12 +9,12 @@ buildscript {
     }
 
     dependencies {
-        classpath(kotlin("gradle-plugin", "1.3.0"))
+        classpath(kotlin("gradle-plugin", "1.3.10"))
     }
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8", "1.3.0"))
+    implementation(kotlin("stdlib-jdk8", "1.3.10"))
 }
 
 repositories {
