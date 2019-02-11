@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
 
       // Create an SSLContext that uses our TrustManager
       val sslContext = SSLContext.getInstance("TLS")
-      /******************* 方式一 法证书锁定，直接用预埋的证书来生成TrustManger ********************/
+      /******************* 方式一 证书锁定，直接用预埋的证书来生成TrustManger ********************/
       // Create a TrustManager that trusts the CAs in our KeyStore
       // val tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
       // tmf.init(keyStore)
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
           chain: Array<out X509Certificate>?,
           authType: String?
         ) {
-          //  do nothing，接受任意服务端证书
+          // 校验服务端证书
           chain?.forEach {
             // Make sure that it hasn't expired.
             it.checkValidity()
@@ -123,7 +123,13 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
       // example.com versus example.org
       // Tell the URLConnection to use our HostnameVerifier
       connection.setHostnameVerifier { hostname, session ->
-        TextUtils.equals(HOST_URI, hostname)
+        if (TextUtils.equals(HOST_URI, hostname)) {
+          true
+        } else {
+          // warning，这里，可以提前使用HttpsURLConnection.setDefaultHostnameVerifier做集中统一处理
+          val hv = HttpsURLConnection.getDefaultHostnameVerifier()
+          hv.verify(hostname, session)
+        }
       }
 
       val inputStream = connection.inputStream
